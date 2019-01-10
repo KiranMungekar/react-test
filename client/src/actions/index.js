@@ -3,9 +3,7 @@ import axios from 'axios';
 
 import {FETCH_USER} from './types';
 
-const fetchUser= () =>{
-    return (dispatch)=>{
-        axios.get('/api/currUser')
-        .then(res => dispatch({type:FETCH_USER, payload: res}));
-    }
-}
+export const fetchUser= () => async dispatch =>{
+      const res= await axios.get('/api/currUser');
+         dispatch({ type: FETCH_USER, payload: res.data });
+    };

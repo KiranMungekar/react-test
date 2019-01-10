@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 
+import { connect } from 'react-redux';
 
 class Header extends Component {
     constructor(props) {
@@ -8,11 +9,12 @@ class Header extends Component {
         this.state = {  }
     }
     render() { 
+        console.log(this.props);
         return ( 
             <nav>
                 <div className="nav-wrapper container">
                 <a href="#" className="brand-logo">Emaily</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><a href="#">Login</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
@@ -21,6 +23,9 @@ class Header extends Component {
             </nav>
          );
     }
-}
  
-export default Header;
+}
+function mapStateToProps({auth}){
+    return{ auth:auth };
+}
+export default connect (mapStateToProps)(Header);

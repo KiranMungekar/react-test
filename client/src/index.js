@@ -14,7 +14,6 @@ import reducers from './reducers';
 
 //Action Creaters
 
-
 const store = createStore(()=>reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
