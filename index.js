@@ -2,14 +2,18 @@ const express= require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const models = require('./models/user');
+
 require('./services/passportService');
 
 mongoose.connect(keys.mongoDevURI,{ useNewUrlParser: true });
 
 const app = express();
 
+
+app.use(bodyParser.json());
 //Set cookies
 app.use(
     cookieSession({
@@ -21,6 +25,7 @@ app.use(
   app.use(passport.session());
 
   require('./routes/oAuthRoutes')(app);
+  require('./routes/paymentsRoutes')(app);
 const PORT = process.env.PORT || 5000;
 
 app.get('/',(req,res) =>{

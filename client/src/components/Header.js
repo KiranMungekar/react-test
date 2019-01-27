@@ -1,7 +1,8 @@
 import React from 'react';
-import {Component} from 'react';
-
+import { Component } from 'react';
+import Payments  from './payments';
 import { connect } from 'react-redux';
+
 
 class Header extends Component {
     constructor(props) {
@@ -13,13 +14,12 @@ class Header extends Component {
             case null:
                 return ;
             case false:
-                return (
-                    <li><a href="/auth/google">Login</a></li>
-                );
+                return  <li><a href="/auth/google">Login</a></li>;
             default:
-            return (
-                <li><a href="/api/logout"> Logout</a></li>
-                );
+                return [
+                    <li key="1"><Payments/></li>,
+                    <li key="2"><a href="/api/logout"> Logout</a></li>
+                ];
         }     
     }
     render() { 
