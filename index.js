@@ -26,6 +26,21 @@ app.use(
 
   require('./routes/oAuthRoutes')(app);
   require('./routes/paymentsRoutes')(app);
+
+
+  if(process.env.NODE_ENV == 'production'){
+    //Express will serve main.js and main.css
+      app.use(express.static('client/build'));
+
+    //Express will serve up index.html if does not find specified route
+      const path =require('path');
+
+      app.get('*',(req, res)=>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+
+      });
+
+  }
 const PORT = process.env.PORT || 5000;
 
 app.get('/',(req,res) =>{
@@ -34,4 +49,3 @@ app.get('/',(req,res) =>{
 
 
 app.listen(PORT);
-
