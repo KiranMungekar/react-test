@@ -4,6 +4,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+
+////Models
 const models = require('./models/user');
 require('./models/survey');
 require('./services/passportService');
@@ -26,7 +28,7 @@ app.use(
 
   require('./routes/oAuthRoutes')(app);
   require('./routes/paymentsRoutes')(app);
-
+  require('./routes/surveyRoutes')(app);
 
   if(process.env.NODE_ENV == 'production'){
     //Express will serve main.js and main.css
