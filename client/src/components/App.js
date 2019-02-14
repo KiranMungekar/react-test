@@ -11,19 +11,29 @@ import SurveyNew from './SurveyComponents/SurveyNew'
 
 class App extends Component {
     componentDidMount(){
-        this.props.fetchUser();
+        this.props.fetchUser().then(
+            user=>{
+                if(user){
+                    console.log("LoggedIn");
+                }
+
+            }
+        );
+
     }
     
     render() { 
         return ( 
-            <div className="">
+            <div>
             <BrowserRouter>
              <div>
                  <Header></Header>
                  <div className="container">
                      <Route exact = {true} path="/" component={Landing} />
                      <Route path="/Dashboared" component={Dashboard} />
-                     <Route path="/Survey/new" component={SurveyNew} />
+                     <div className="container">
+                         <Route path="/Survey/new" component={SurveyNew} />
+                     </div>
                  </div>
              </div>
             </BrowserRouter>
