@@ -9,6 +9,6 @@ export  default [
         label:'Email Body', name:'body'
     },
     {
-        label:'Recipient List', name:'emails'
+        label:'Recipient List', name:'recipients'
     }
 ];

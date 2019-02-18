@@ -43,7 +43,7 @@ class SurveyForm extends Component {
 
 function validate(value){
     const errors= {};
-    errors.emails =validateEmails(value.emails || '');
+    errors.recipients =validateEmails(value.recipients || '');
         _.each(FIELDS, ({name})=>{
             if(!value[name]){
                 errors[name]='You must provide a '+name;
