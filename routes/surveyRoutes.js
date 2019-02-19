@@ -6,6 +6,12 @@ const Survey =mongooee.model('surveys');
 const template = require('../services/emailTemplates/surveyTemplate');
 module.exports= app =>{ 
     
+    app.post('/api/surveys/webhook', (req,res)=>{
+        console.log(req);
+        res.send('Thank You for voting!');
+    });
+
+
     app.get('/api/surveys/thanks',(req,res)=>{
         res.send('Thanks for voting');
     });
@@ -25,6 +31,7 @@ module.exports= app =>{
         // Send Emails!
        try{
         const mail= new mailer(survey, template(survey));
+        console.log(template(survey));
         await mail.send();
         await survey.save();
         req.user.credits -=1;
